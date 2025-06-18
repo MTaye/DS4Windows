@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -111,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accel" xml:space="preserve">
     <value>Beschleunigung</value>
@@ -342,18 +343,6 @@
   <data name="HidNinja" xml:space="preserve">
     <value>HidNinja</value>
   </data>
-  <data name="OscServerHeading" xml:space="preserve">
-    <value>Externe OSC Steuerung &amp; Überwachung</value>
-  </data>
-  <data name="EnableOscServer" xml:space="preserve">
-    <value>Aktiviere Steuerungsserver</value>
-  </data>
-  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
-    <value>Interpretiere Überwachungsnachrichten</value>
-  </data>
-    <data name="EnableOscSender" xml:space="preserve">
-    <value>Aktiviere Überwachungsservice</value>
-  </data>
   <data name="CustomExeName" xml:space="preserve">
     <value>Eigener EXE-Name</value>
   </data>
@@ -557,17 +546,80 @@ Beispiel: whyme_DS4Windows</value>
   <data name="Accept" xml:space="preserve">
     <value>Akzeptieren</value>
   </data>
-  <data name="AppTheme" xml:space="preserve">
-    <value>Farbschema</value>
-  </data>
   <data name="Black" xml:space="preserve">
     <value>Schwarz</value>
+  </data>
+  <data name="Colored" xml:space="preserve">
+    <value>Gefärbt</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>Standard</value>
   </data>
-  <data name="Colored" xml:space="preserve">
-    <value>Gefärbt</value>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Gerätetyp</value>
+  </data>
+  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
+    <value>Trenne Bluetoothverbindung beim Beenden</value>
+  </data>
+  <data name="Dynamic" xml:space="preserve">
+    <value>Dynamisch</value>
+  </data>
+  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
+    <value>Blinke mit hoher Latenz</value>
+  </data>
+  <data name="HideDS4Controller" xml:space="preserve">
+    <value>Verstecke DS4 Controller</value>
+  </data>
+  <data name="HotkeysAbout" xml:space="preserve">
+    <value>Tastenkürzel/Über</value>
+  </data>
+  <data name="IconChoice" xml:space="preserve">
+    <value>Symbolwahl</value>
+  </data>
+  <data name="MinimizeToTaskbar" xml:space="preserve">
+    <value>In Taskbar minimieren</value>
+  </data>
+  <data name="MinimizeToTaskbarTip" xml:space="preserve">
+    <value>In Taskbar minimieren, statt in System-Tray</value>
+  </data>
+  <data name="Plug" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
+    <value>Kehre zu Standardprofil zurück bei unbekannt</value>
+  </data>
+  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
+    <value>Zeige Debug-Nachrichten</value>
+  </data>
+  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
+    <value>Benutze das Touchpad um Profile zu wechseln</value>
+  </data>
+  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
+    <value>Schalte DS4Windows temporär ab</value>
+  </data>
+  <data name="Unplug" xml:space="preserve">
+    <value>Trennen</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Weiß</value>
+  </data>
+  <data name="AppTheme" xml:space="preserve">
+    <value>Farbschema</value>
+  </data>
+  <data name="CheckEvery" xml:space="preserve">
+    <value>Checke aller</value>
+  </data>
+  <data name="OscServerHeading" xml:space="preserve">
+    <value>Externe OSC Steuerung &amp; Überwachung</value>
+  </data>
+  <data name="EnableOscServer" xml:space="preserve">
+    <value>Aktiviere Steuerungsserver</value>
+  </data>
+  <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
+    <value>Interpretiere Überwachungsnachrichten</value>
+  </data>
+  <data name="EnableOscSender" xml:space="preserve">
+    <value>Aktiviere Überwachungsservice</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Dunkel</value>
@@ -581,14 +633,11 @@ Beispiel: whyme_DS4Windows</value>
   <data name="DeviceOptions" xml:space="preserve">
     <value>Geräteoptionen</value>
   </data>
-  <data name="DeviceType" xml:space="preserve">
-    <value>Gerätetyp</value>
-  </data>
-  <data name="Dynamic" xml:space="preserve">
-    <value>Dynamisch</value>
-  </data>
   <data name="Hours" xml:space="preserve">
     <value>Stunden</value>
+  </data>
+  <data name="UseCustomSteamFolder" xml:space="preserve">
+    <value>Verwende individuellen Steam-Ordner</value>
   </data>
   <data name="Program" xml:space="preserve">
     <value>Programm</value>
@@ -596,52 +645,10 @@ Beispiel: whyme_DS4Windows</value>
   <data name="Task" xml:space="preserve">
     <value>Aufgabe</value>
   </data>
-  <data name="Unplug" xml:space="preserve">
-    <value>Trennen</value>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
   </data>
-  <data name="White" xml:space="preserve">
-    <value>Weiß</value>
-  </data>
-  <data name="ShowAutoProfileDebugMessages" xml:space="preserve">
-    <value>Zeige Debug-Nachrichten</value>
-  </data>
-  <data name="RevertToDefaultProfileOnUnknown" xml:space="preserve">
-    <value>Kehre zu Standardprofil zurück bei unbekannt</value>
-  </data>
-  <data name="TurnOffDS4WindowsTemporarily" xml:space="preserve">
-    <value>Schalte DS4Windows temporär ab</value>
-  </data>
-  <data name="Plug" xml:space="preserve">
-    <value>Verbinden</value>
-  </data>
-  <data name="HideDS4Controller" xml:space="preserve">
-    <value>Verstecke DS4 Controller</value>
-  </data>
-  <data name="SwipeTouchpadToSwitchProfiles" xml:space="preserve">
-    <value>Benutze das Touchpad um Profile zu wechseln</value>
-  </data>
-  <data name="DisconnectFromBtWhenStopping" xml:space="preserve">
-    <value>Trenne Bluetoothverbindung beim Beenden</value>
-  </data>
-  <data name="FlashLightbarAtHighLatency" xml:space="preserve">
-    <value>Blinke mit hoher Latenz</value>
-  </data>
-  <data name="MinimizeToTaskbar" xml:space="preserve">
-    <value>In Taskbar minimieren</value>
-  </data>
-  <data name="MinimizeToTaskbarTip" xml:space="preserve">
-    <value>In Taskbar minimieren, statt in System-Tray</value>
-  </data>
-  <data name="IconChoice" xml:space="preserve">
-    <value>Symbolwahl</value>
-  </data>
-  <data name="CheckEvery" xml:space="preserve">
-    <value>Checke aller</value>
-  </data>
-  <data name="UseCustomSteamFolder" xml:space="preserve">
-    <value>Verwende individuellen Steam-Ordner</value>
-  </data>
-  <data name="HotkeysAbout" xml:space="preserve">
-    <value>Tastenkürzel/Über</value>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -795,6 +795,12 @@ Example: whyme_DS4Windows</value>
   <data name="Light" xml:space="preserve">
     <value>Φως</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
   <data name="ProfileEditor.VirtualTrigButtonOutput" xml:space="preserve">
     <value>Ενεργοποίηση Κουμπιών Εικονικής Σκανδάλης (DS4)</value>
   </data>

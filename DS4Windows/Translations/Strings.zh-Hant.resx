@@ -550,4 +550,10 @@ Maps the controller output to mixed XInput gamepad + RS mouse.</value>
   <data name="DS4LightbarPassthruDisabled" xml:space="preserve">
     <value>由於驅動問題，該功能目前在應用程式中停用。希望這些問題在未來的更新中得到解決。</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
 </root>

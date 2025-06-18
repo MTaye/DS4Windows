@@ -745,4 +745,10 @@ Disabled:
   <data name="ControllerSupportDS3" xml:space="preserve">
     <value>Hỗ trợ tay cầm PS3</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
 </root>

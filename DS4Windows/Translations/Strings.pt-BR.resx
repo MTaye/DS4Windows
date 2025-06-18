@@ -436,4 +436,10 @@
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Real World Calibration</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
 </root>

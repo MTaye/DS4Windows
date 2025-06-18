@@ -169,7 +169,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anti-dead Zone.
+        ///   Looks up a localized string similar to Anti-deadzone.
         /// </summary>
         public static string AntiDeadZone {
             get {
@@ -855,7 +855,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dead Zone.
+        ///   Looks up a localized string similar to Deadzone.
         /// </summary>
         public static string DeadZone {
             get {
@@ -864,7 +864,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeadZone X.
+        ///   Looks up a localized string similar to Deadzone X.
         /// </summary>
         public static string DeadZone_X {
             get {
@@ -873,7 +873,7 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeadZone Y.
+        ///   Looks up a localized string similar to Deadzone Y.
         /// </summary>
         public static string DeadZone_Y {
             get {
@@ -882,7 +882,25 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dead Zone Type.
+        ///   Looks up a localized string similar to Axial Deadzone.
+        /// </summary>
+        public static string DeadZoneAxial {
+            get {
+                return ResourceManager.GetString("DeadZoneAxial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Radial Deadzone.
+        /// </summary>
+        public static string DeadZoneRadial {
+            get {
+                return ResourceManager.GetString("DeadZoneRadial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadzone Type.
         /// </summary>
         public static string DeadZoneType {
             get {

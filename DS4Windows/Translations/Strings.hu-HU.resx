@@ -154,10 +154,10 @@
     <value>Mégse</value>
   </data>
   <data name="CheckUpdateNow" xml:space="preserve">
-    <value>Frissítés keresése most</value> 
+    <value>Frissítés keresése most</value>
   </data>
   <data name="CheckUpdateStartup" xml:space="preserve">
-    <value>DS4Windows frissítések keresése induláskor</value> 
+    <value>DS4Windows frissítések keresése induláskor</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Törlés</value>
@@ -310,7 +310,7 @@
     <value>mp</value>
   </data>
   <data name="RumbleMaxSecsTip" xml:space="preserve">
-    <value>Rezgés automatikus megállítása másodpercben (0 = automatikus megállítás kikapcsolva)</value> 
+    <value>Rezgés automatikus megállítása másodpercben (0 = automatikus megállítás kikapcsolva)</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Ablak címe</value>
@@ -434,6 +434,12 @@ Example: whyme_DS4Windows</value>
     <value>Minimum szög határérték</value>
   </data>
   <data name="RealWorldCalibration" xml:space="preserve">
-    <value>Real World Calibration</value> 
+    <value>Real World Calibration</value>
+  </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
   </data>
 </root>

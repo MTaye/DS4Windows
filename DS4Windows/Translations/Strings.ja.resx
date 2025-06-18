@@ -437,7 +437,7 @@
     <value>Real World Calibration</value>
   </data>
   <data name="ViGEmPluginFailure" xml:space="preserve">
-      <value>ViGEm デバイスプラグインが失敗しました。おそらくViGEmBus内部の問題です。接続を終了します。問題が解決しない場合は、Windowsを再起動してください。警告: Windowsのシャットダウン時にブルースクリーンが発生する可能性があります。</value>
+    <value>ViGEm デバイスプラグインが失敗しました。おそらくViGEmBus内部の問題です。接続を終了します。問題が解決しない場合は、Windowsを再起動してください。警告: Windowsのシャットダウン時にブルースクリーンが発生する可能性があります。</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
     <value>ワイヤレスデバイスのデータ整合性チェックに失敗しました。デバイスを閉じます。</value>
@@ -465,5 +465,11 @@
   </data>
   <data name="SharedAccess" xml:space="preserve">
     <value>共有アクセス</value>
+  </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
   </data>
 </root>

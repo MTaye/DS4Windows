@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -435,7 +436,7 @@ Exemple : tu_es_tilte_boubou_DS4Windows</value>
   <data name="RealWorldCalibration" xml:space="preserve">
     <value>Calibration dans le monde réel</value>
   </data>
-<data name="ViGEmPluginFailure" xml:space="preserve">
+  <data name="ViGEmPluginFailure" xml:space="preserve">
     <value>Le plug-in de périphérique ViGEm à rencontré un problème. Probablement un problème interne à ViGEmBus. Fermeture de la connexion. Si le problème persiste, veuillez fermer DS4Windows et redémarrer windows.</value>
   </data>
   <data name="CRC32Fail" xml:space="preserve">
@@ -743,5 +744,11 @@ Désactivé:
   </data>
   <data name="ControllerSupportDS3" xml:space="preserve">
     <value>Support manette DS3</value>
+  </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
   </data>
 </root>

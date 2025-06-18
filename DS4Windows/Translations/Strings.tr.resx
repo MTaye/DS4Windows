@@ -808,4 +808,10 @@ Devre Dışı:
   <data name="DS4OutputTriggersDefault" xml:space="preserve">
     <value>Varsayılan (Analog + Butonlar)</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
 </root>

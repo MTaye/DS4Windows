@@ -466,4 +466,10 @@ Example: whyme_DS4Windows</value>
   <data name="SharedAccess" xml:space="preserve">
     <value>Shared Access</value>
   </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -809,13 +809,13 @@ Disabled:
     <value>Default (Analog + Buttons)</value>
   </data>
   <data name="DeadZone" xml:space="preserve">
-    <value>Dead Zone</value>
+    <value>Deadzone</value>
   </data>
   <data name="MaxZone" xml:space="preserve">
     <value>Max Zone</value>
   </data>
   <data name="AntiDeadZone" xml:space="preserve">
-    <value>Anti-dead Zone</value>
+    <value>Anti-deadzone</value>
   </data>
   <data name="Axial" xml:space="preserve">
     <value>Axial</value>
@@ -830,13 +830,13 @@ Disabled:
     <value>Cubic</value>
   </data>
   <data name="DeadZone X" xml:space="preserve">
-    <value>DeadZone X</value>
+    <value>Deadzone X</value>
   </data>
   <data name="DeadZone Y" xml:space="preserve">
-    <value>DeadZone Y</value>
+    <value>Deadzone Y</value>
   </data>
   <data name="DeadZoneType" xml:space="preserve">
-    <value>Dead Zone Type</value>
+    <value>Deadzone Type</value>
   </data>
   <data name="EaseoutCubic" xml:space="preserve">
     <value>Easeout Cubic</value>
@@ -1408,5 +1408,11 @@ Please click OK to confirm that you have read the message. Press Cancel to be re
   </data>
   <data name="Custom" xml:space="preserve">
     <value>Custom</value>
+  </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value>Radial Deadzone</value>
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value>Axial Deadzone</value>
   </data>
 </root>

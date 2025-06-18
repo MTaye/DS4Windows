@@ -679,7 +679,7 @@ Liikuntarajoitteinen:
   <data name="EnableInterpretingOscMonitoring" xml:space="preserve">
     <value>Tulkitse Valvontaviestit</value>
   </data>
-    <data name="EnableOscSender" xml:space="preserve">
+  <data name="EnableOscSender" xml:space="preserve">
     <value>Ota Valvontapalvelu Käyttöön</value>
   </data>
   <data name="ControllerSupportDS4" xml:space="preserve">
@@ -741,5 +741,11 @@ Liikuntarajoitteinen:
   </data>
   <data name="WakeupFromSuspend" xml:space="preserve">
     <value>Herääminen Keskeytyksestä</value>
+  </data>
+  <data name="DeadZoneRadial" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DeadZoneAxial" xml:space="preserve">
+    <value />
   </data>
 </root>
