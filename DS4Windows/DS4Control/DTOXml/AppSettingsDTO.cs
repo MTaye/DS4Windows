@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -225,22 +226,24 @@ namespace DS4WinWPF.DS4Control.DTOXml
                 Global.MAX_DS4_CONTROLLER_COUNT >= 8;
         }
 
+        private DateTime _lastChecked;
 
         [XmlIgnore]
         public DateTime LastChecked
         {
-            get; private set;
+            get => _lastChecked;
+            private set => _lastChecked = value;
         }
 
         [XmlElement("LastChecked")]
         public string LastCheckString
         {
-            get => LastChecked.ToString("MM/dd/yyyy HH:mm:ss");
+            get => _lastChecked.ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             set
             {
-                if (DateTime.TryParse(value, out DateTime temp))
+                if (DateTime.TryParseExact(value, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime temp))
                 {
-                    LastChecked = temp;
+                    _lastChecked = temp;
                 }
             }
         }

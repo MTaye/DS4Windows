@@ -18,8 +18,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
 using System.IO;
+using System.Security.AccessControl;
 using System.Text;
 using System.Xml;
+using static DS4Windows.StickDeadZoneInfo;
 
 namespace DS4Windows
 {
@@ -97,7 +99,7 @@ namespace DS4Windows
             {
                 string migratedText;
                 int tempVersion = configFileVersion;
-                switch(configFileVersion)
+                switch (configFileVersion)
                 {
                     case 1:
                         migratedText = Version0002Migration();
@@ -117,8 +119,13 @@ namespace DS4Windows
                         currentMigrationText = migratedText;
                         PrepareReaderMigration(migratedText);
                         tempVersion = 5;
+                        goto case 5;
+                    case 5:
+                        migratedText = Version0006Migration();
+                        currentMigrationText = migratedText;
+                        PrepareReaderMigration(migratedText);
+                        tempVersion = 6;
                         goto default;
-
                     default:
                         break;
                 }
@@ -194,6 +201,87 @@ namespace DS4Windows
             profileReader = XmlReader.Create(new StringReader(currentMigrationText));
             // Move stream to root element
             profileReader.MoveToContent();
+        }
+
+        private string Version0002Migration()
+        {
+            StringWriter stringWrite = new StringWriter();
+            XmlWriter tempWriter = XmlWriter.Create(stringWrite, new XmlWriterSettings()
+            {
+                Encoding = Encoding.UTF8,
+                Indent = true,
+            });
+            tempWriter.WriteStartDocument();
+            // Move stream to root element
+            profileReader.MoveToContent();
+            // Skip past root element
+            profileReader.Read();
+            profileReader.MoveToContent();
+
+            // Write replacement root element in XmlWriter
+            tempWriter.WriteStartElement("DS4Windows");
+            tempWriter.WriteAttributeString("app_version", Global.exeversion);
+            tempWriter.WriteAttributeString("config_version", "2");
+
+            while (!profileReader.EOF)
+            {
+                if (profileReader.IsStartElement() && profileReader.Depth == 1)
+                {
+                    switch (profileReader.Name)
+                    {
+                        case "LSDeadZone":
+                            {
+                                string lsdead = profileReader.ReadElementContentAsString();
+                                bool valid = int.TryParse(lsdead, out int temp);
+                                if (valid)
+                                {
+                                    // Add default deadzone if a 0 dead zone was set in profile.
+                                    // Jays2Kings used implicit dead zones in the mapper code
+                                    if (temp <= 0)
+                                    {
+                                        temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
+                                    }
+
+                                    tempWriter.WriteElementString("LSDeadZone", temp.ToString());
+                                }
+
+                                break;
+                            }
+                        case "RSDeadZone":
+                            {
+                                string rsdead = profileReader.ReadElementContentAsString();
+                                bool valid = int.TryParse(rsdead, out int temp);
+                                if (valid)
+                                {
+                                    // Add default deadzone if a 0 dead zone was set in profile.
+                                    // Jays2Kings used implicit dead zones in the mapper code
+                                    if (temp <= 0)
+                                    {
+                                        temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
+                                    }
+
+                                    tempWriter.WriteElementString("RSDeadZone", temp.ToString());
+                                }
+
+                                break;
+                            }
+
+                        default:
+                            tempWriter.WriteNode(profileReader, true);
+                            break;
+                    }
+                }
+                else
+                {
+                    profileReader.Read();
+                }
+            }
+
+            // End XML document and flush IO stream
+            tempWriter.WriteEndElement();
+            tempWriter.WriteEndDocument();
+            tempWriter.Close();
+            return stringWrite.ToString();
         }
 
         struct MigrationSettings0004
@@ -293,40 +381,40 @@ namespace DS4Windows
                 bool readNext = true;
                 if (profileReader.IsStartElement() && profileReader.Depth == 1)
                 {
-                    switch(profileReader.Name)
+                    switch (profileReader.Name)
                     {
                         case "GyroSmoothing":
-                        {
-                            gyroSmoothSettings.hasGyroMouseSmoothing = true;
-                            string useSmooth = profileReader.ReadElementContentAsString();
-                            bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseSmoothing);
-                            readNext = false;
-                            break;
-                        }
+                            {
+                                gyroSmoothSettings.hasGyroMouseSmoothing = true;
+                                string useSmooth = profileReader.ReadElementContentAsString();
+                                bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseSmoothing);
+                                readNext = false;
+                                break;
+                            }
                         case "GyroSmoothingWeight":
-                        {
-                            gyroSmoothSettings.hasGyroMouseSmoothingWeight = true;
-                            string weight = profileReader.ReadElementContentAsString();
-                            double.TryParse(weight, out gyroSmoothSettings.gyroMouseSmoothingWeight);
-                            readNext = false;
-                            break;
-                        }
+                            {
+                                gyroSmoothSettings.hasGyroMouseSmoothingWeight = true;
+                                string weight = profileReader.ReadElementContentAsString();
+                                double.TryParse(weight, out gyroSmoothSettings.gyroMouseSmoothingWeight);
+                                readNext = false;
+                                break;
+                            }
                         case "GyroMouseStickSmoothing":
-                        {
-                            gyroSmoothSettings.hasGyroMouseStickSmoothing = true;
-                            string useSmooth = profileReader.ReadElementContentAsString();
-                            bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseStickSmoothing);
-                            readNext = false;
-                            break;
-                        }
+                            {
+                                gyroSmoothSettings.hasGyroMouseStickSmoothing = true;
+                                string useSmooth = profileReader.ReadElementContentAsString();
+                                bool.TryParse(useSmooth, out gyroSmoothSettings.useGyroMouseStickSmoothing);
+                                readNext = false;
+                                break;
+                            }
                         case "GyroMouseStickSmoothingWeight":
-                        {
-                            gyroSmoothSettings.hasGyroMouseStickSmoothingWeight = true;
-                            string weight = profileReader.ReadElementContentAsString();
-                            double.TryParse(weight, out gyroSmoothSettings.gyroMouseStickSmoothingWeight);
-                            readNext = false;
-                            break;
-                        }
+                            {
+                                gyroSmoothSettings.hasGyroMouseStickSmoothingWeight = true;
+                                string weight = profileReader.ReadElementContentAsString();
+                                double.TryParse(weight, out gyroSmoothSettings.gyroMouseStickSmoothingWeight);
+                                readNext = false;
+                                break;
+                            }
                         default:
                             break;
                     }
@@ -359,33 +447,33 @@ namespace DS4Windows
                     switch (profileReader.Name)
                     {
                         case "GyroSmoothing":
-                        {
-                            // Place new GyroMouseSmoothingSettings group where GyroSmoothing used to be
-                            MigrateGyroMouseSmoothingSettings(tempWriter);
-                            // Consume reset of element
-                            profileReader.ReadElementContentAsString();
-                            break;
-                        }
+                            {
+                                // Place new GyroMouseSmoothingSettings group where GyroSmoothing used to be
+                                MigrateGyroMouseSmoothingSettings(tempWriter);
+                                // Consume reset of element
+                                profileReader.ReadElementContentAsString();
+                                break;
+                            }
                         case "GyroSmoothingWeight":
-                        {
-                            // Consume reset of element
-                            profileReader.ReadElementContentAsString();
-                            break;
-                        }
+                            {
+                                // Consume reset of element
+                                profileReader.ReadElementContentAsString();
+                                break;
+                            }
                         case "GyroMouseStickSmoothing":
-                        {
-                            // Place new GyroMouseStickSmoothingSettings group where GyroSmoothing used to be
-                            MigrateGyroMouseStickSmoothingSettings(tempWriter);
-                            // Consume reset of element
-                            profileReader.ReadElementContentAsString();
-                            break;
-                        }
+                            {
+                                // Place new GyroMouseStickSmoothingSettings group where GyroSmoothing used to be
+                                MigrateGyroMouseStickSmoothingSettings(tempWriter);
+                                // Consume reset of element
+                                profileReader.ReadElementContentAsString();
+                                break;
+                            }
                         case "GyroMouseStickSmoothingWeight":
-                        {
-                            // Consume reset of element
-                            profileReader.ReadElementContentAsString();
-                            break;
-                        }
+                            {
+                                // Consume reset of element
+                                profileReader.ReadElementContentAsString();
+                                break;
+                            }
                         default:
                             tempWriter.WriteNode(profileReader, true);
                             break;
@@ -396,87 +484,6 @@ namespace DS4Windows
                     profileReader.Read();
                 }
             }
-
-            // End XML document and flush IO stream
-            tempWriter.WriteEndElement();
-            tempWriter.WriteEndDocument();
-            tempWriter.Close();
-            return stringWrite.ToString();
-        }
-
-        private string Version0002Migration()
-        {
-            StringWriter stringWrite = new StringWriter();
-            XmlWriter tempWriter = XmlWriter.Create(stringWrite, new XmlWriterSettings()
-            {
-                Encoding = Encoding.UTF8,
-                Indent = true,
-            });
-            tempWriter.WriteStartDocument();
-            // Move stream to root element
-            profileReader.MoveToContent();
-            // Skip past root element
-            profileReader.Read();
-            profileReader.MoveToContent();
-
-            // Write replacement root element in XmlWriter
-            tempWriter.WriteStartElement("DS4Windows");
-            tempWriter.WriteAttributeString("app_version", Global.exeversion);
-            tempWriter.WriteAttributeString("config_version", "2");
-
-            while (!profileReader.EOF)
-            {
-                if (profileReader.IsStartElement() && profileReader.Depth == 1)
-                {
-                    switch (profileReader.Name)
-                    {
-                        case "LSDeadZone":
-                        {
-                            string lsdead = profileReader.ReadElementContentAsString();
-                            bool valid = int.TryParse(lsdead, out int temp);
-                            if (valid)
-                            {
-                                // Add default deadzone if a 0 dead zone was set in profile.
-                                // Jays2Kings used implicit dead zones in the mapper code
-                                if (temp <= 0)
-                                {
-                                    temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
-                                }
-
-                                tempWriter.WriteElementString("LSDeadZone", temp.ToString());
-                            }
-
-                            break;
-                        }
-                        case "RSDeadZone":
-                        {
-                            string rsdead = profileReader.ReadElementContentAsString();
-                            bool valid = int.TryParse(rsdead, out int temp);
-                            if (valid)
-                            {
-                                // Add default deadzone if a 0 dead zone was set in profile.
-                                // Jays2Kings used implicit dead zones in the mapper code
-                                if (temp <= 0)
-                                {
-                                    temp = StickDeadZoneInfo.DEFAULT_DEADZONE;
-                                }
-
-                                tempWriter.WriteElementString("RSDeadZone", temp.ToString());
-                            }
-
-                            break;
-                        }
-
-                        default:
-                            tempWriter.WriteNode(profileReader, true);
-                            break;
-                    }
-                }
-                else
-                {
-                    profileReader.Read();
-                }
-             }
 
             // End XML document and flush IO stream
             tempWriter.WriteEndElement();
@@ -522,6 +529,125 @@ namespace DS4Windows
 
                                 break;
                             }
+                        default:
+                            tempWriter.WriteNode(profileReader, true);
+                            break;
+                    }
+                }
+                else
+                {
+                    profileReader.Read();
+                }
+            }
+
+            // End XML document and flush IO stream
+            tempWriter.WriteEndElement();
+            tempWriter.WriteEndDocument();
+            tempWriter.Close();
+            return stringWrite.ToString();
+        }
+
+        private string Version0006Migration()
+        {
+            StringWriter stringWrite = new StringWriter();
+            XmlWriter tempWriter = XmlWriter.Create(stringWrite, new XmlWriterSettings()
+            {
+                Encoding = Encoding.UTF8,
+                Indent = true,
+            });
+            tempWriter.WriteStartDocument();
+            // Move stream to root element
+            profileReader.MoveToContent();
+            // Skip past root element
+            profileReader.Read();
+            profileReader.MoveToContent();
+
+            // Write replacement root element in XmlWriter
+            tempWriter.WriteStartElement("DS4Windows");
+            tempWriter.WriteAttributeString("app_version", Global.exeversion);
+            tempWriter.WriteAttributeString("config_version", "6");
+
+            string lsDeadZoneType = null;
+            string rsDeadZoneType = null;
+
+            // First pass: Collect DeadZoneType values and skip DeadZoneTypeRadial/Axial
+            while (!profileReader.EOF)
+            {
+                if (profileReader.IsStartElement() && profileReader.Depth == 1)
+                {
+                    switch (profileReader.Name)
+                    {
+                        case "LSDeadZoneType":
+                            lsDeadZoneType = profileReader.ReadElementContentAsString();
+                            break;
+                        case "RSDeadZoneType":
+                            rsDeadZoneType = profileReader.ReadElementContentAsString();
+                            break;
+                        case "LSDeadZoneTypeRadial":
+                        case "LSDeadZoneTypeAxial":
+                            if (lsDeadZoneType != null)
+                            {
+                                profileReader.ReadElementContentAsString();
+                            }
+                            break;
+                        case "RSDeadZoneTypeRadial":
+                        case "RSDeadZoneTypeAxial":
+                            if (rsDeadZoneType != null)
+                            {
+                                profileReader.ReadElementContentAsString();
+                            }
+                            break;
+                        default:
+                            profileReader.Read();
+                            break;
+                    }
+                }
+                else
+                {
+                    profileReader.Read();
+                }
+            }
+
+            // Close and dispose current XmlReader
+            profileReader.Close();
+            profileReader.Dispose();
+
+            // Prepare for second pass
+            StringReader stringRead = new StringReader(currentMigrationText);
+            profileReader = XmlReader.Create(stringRead);
+            profileReader.MoveToContent();
+            profileReader.Read();
+            profileReader.MoveToContent();
+
+            // Second pass: Write new XML, replacing LSDeadZoneType with new elements
+            while (!profileReader.EOF)
+            {
+                if (profileReader.IsStartElement() && profileReader.Depth == 1)
+                {
+                    switch (profileReader.Name)
+                    {
+                        case "LSDeadZoneType":
+                            tempWriter.WriteNode(profileReader, true);
+                            if (lsDeadZoneType != null)
+                            {
+                                tempWriter.WriteElementString("LSDeadZoneTypeRadial", lsDeadZoneType == "Axial" ? "False" : "True");
+                                tempWriter.WriteElementString("LSDeadZoneTypeAxial", lsDeadZoneType == "Axial" ? "True" : "False");
+                            }
+                            break;
+                        case "RSDeadZoneType":
+                            tempWriter.WriteNode(profileReader, true);
+                            if (rsDeadZoneType != null)
+                            {
+                                tempWriter.WriteElementString("RSDeadZoneTypeRadial", rsDeadZoneType == "Axial" ? "False" : "True");
+                                tempWriter.WriteElementString("RSDeadZoneTypeAxial", rsDeadZoneType == "Axial" ? "True" : "False");
+                            }
+                            break;
+                        case "LSDeadZoneTypeRadial":
+                        case "LSDeadZoneTypeAxial":
+                        case "RSDeadZoneTypeRadial":
+                        case "RSDeadZoneTypeAxial":
+                            profileReader.ReadElementContentAsString();
+                            break;
                         default:
                             tempWriter.WriteNode(profileReader, true);
                             break;

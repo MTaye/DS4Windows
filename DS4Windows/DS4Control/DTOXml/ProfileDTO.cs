@@ -514,6 +514,54 @@ namespace DS4WinWPF.DS4Control.DTOXml
             get; set;
         }
 
+        [XmlIgnore]
+        public bool LSDeadZoneTypeRadial
+        {
+            get; private set;
+        }
+        [XmlElement("LSDeadZoneTypeRadial")]
+        public string LSDeadZoneTypeRadialString
+        {
+            get => LSDeadZoneTypeRadial.ToString();
+            set => LSDeadZoneTypeRadial = XmlDataUtilities.StrToBool(value);
+        }
+
+        [XmlIgnore]
+        public bool LSDeadZoneTypeAxial
+        {
+            get; private set;
+        }
+        [XmlElement("LSDeadZoneTypeAxial")]
+        public string LSDeadZoneTypeAxialString
+        {
+            get => LSDeadZoneTypeAxial.ToString();
+            set => LSDeadZoneTypeAxial = XmlDataUtilities.StrToBool(value);
+        }
+
+        [XmlIgnore]
+        public bool RSDeadZoneTypeRadial
+        {
+            get; private set;
+        }
+        [XmlElement("RSDeadZoneTypeRadial")]
+        public string RSDeadZoneTypeRadialString
+        {
+            get => RSDeadZoneTypeRadial.ToString();
+            set => RSDeadZoneTypeRadial = XmlDataUtilities.StrToBool(value);
+        }
+
+        [XmlIgnore]
+        public bool RSDeadZoneTypeAxial
+        {
+            get; private set;
+        }
+        [XmlElement("RSDeadZoneTypeAxial")]
+        public string RSDeadZoneTypeAxialString
+        {
+            get => RSDeadZoneTypeAxial.ToString();
+            set => RSDeadZoneTypeAxial = XmlDataUtilities.StrToBool(value);
+        }
+
         [XmlElement("LSAxialDeadOptions")]
         public StickAxialDeadOptionsSerializer LSAxialDeadOptions
         {
@@ -1494,6 +1542,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             _rSOuterBindInvert = source.rsModInfo[deviceIndex].outerBindInvert;
 
             LSDeadZoneType = source.lsModInfo[deviceIndex].deadzoneType;
+            LSDeadZoneTypeRadial = source.lsModInfo[deviceIndex].deadZoneTypeRadial;
+            LSDeadZoneTypeAxial = source.lsModInfo[deviceIndex].deadZoneTypeAxial;
             LSAxialDeadOptions = new StickAxialDeadOptionsSerializer()
             {
                 DeadZoneX = source.lsModInfo[deviceIndex].xAxisDeadInfo.deadZone,
@@ -1516,6 +1566,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             };
 
             RSDeadZoneType = source.rsModInfo[deviceIndex].deadzoneType;
+            RSDeadZoneTypeRadial = source.rsModInfo[deviceIndex].deadZoneTypeRadial;
+            RSDeadZoneTypeAxial = source.rsModInfo[deviceIndex].deadZoneTypeAxial;
             RSAxialDeadOptions = new StickAxialDeadOptionsSerializer()
             {
                 DeadZoneX = source.rsModInfo[deviceIndex].xAxisDeadInfo.deadZone,
@@ -1792,7 +1844,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     }
                     else if (dcs.actionType == DS4ControlSettings.ActionType.Macro)
                     {
-                        macroSerializer.CustomMapMacros[dcs.control] = 
+                        macroSerializer.CustomMapMacros[dcs.control] =
                             string.Join("/", dcs.action.actionMacro);
                     }
                 }
@@ -1850,7 +1902,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     }
                     else if (dcs.shiftActionType == DS4ControlSettings.ActionType.Macro)
                     {
-                        shiftMacroSerializer.CustomMapMacros[dcs.control] = 
+                        shiftMacroSerializer.CustomMapMacros[dcs.control] =
                             string.Join("/", dcs.shiftAction.actionMacro);
                         shiftMacroSerializer.ShiftTriggers.TryAdd(dcs.control, dcs.shiftTrigger);
                     }
@@ -1995,6 +2047,8 @@ namespace DS4WinWPF.DS4Control.DTOXml
             destination.rsModInfo[deviceIndex].outerBindInvert = _rSOuterBindInvert;
 
             destination.lsModInfo[deviceIndex].deadzoneType = LSDeadZoneType;
+            destination.lsModInfo[deviceIndex].deadZoneTypeRadial = LSDeadZoneTypeRadial;
+            destination.lsModInfo[deviceIndex].deadZoneTypeAxial = LSDeadZoneTypeAxial;
 
             if (LSAxialDeadOptions != null)
             {
@@ -2019,6 +2073,9 @@ namespace DS4WinWPF.DS4Control.DTOXml
             }
 
             destination.rsModInfo[deviceIndex].deadzoneType = RSDeadZoneType;
+            destination.rsModInfo[deviceIndex].deadZoneTypeRadial = RSDeadZoneTypeRadial;
+            destination.rsModInfo[deviceIndex].deadZoneTypeAxial = RSDeadZoneTypeAxial;
+
             if (RSAxialDeadOptions != null)
             {
                 destination.rsModInfo[deviceIndex].xAxisDeadInfo.deadZone = RSAxialDeadOptions.DeadZoneX;
@@ -2353,7 +2410,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
             {
                 if (Control.Button != null && Control.Button.CustomMapButtons.Count > 0)
                 {
-                    foreach(KeyValuePair<DS4Controls, X360Controls> pair in Control.Button.CustomMapButtons)
+                    foreach (KeyValuePair<DS4Controls, X360Controls> pair in Control.Button.CustomMapButtons)
                     {
                         destination.UpdateDS4CSetting(deviceIndex,
                             pair.Key.ToString(), false, pair.Value, "", DS4KeyType.None, 0);
@@ -2362,7 +2419,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
                 if (Control.Key != null && Control.Key.CustomMapKeys.Count > 0)
                 {
-                    foreach(KeyValuePair<DS4Controls, ushort> pair in Control.Key.CustomMapKeys)
+                    foreach (KeyValuePair<DS4Controls, ushort> pair in Control.Key.CustomMapKeys)
                     {
                         destination.UpdateDS4CSetting(deviceIndex,
                             pair.Key.ToString(), false, pair.Value, "", DS4KeyType.None, 0);
@@ -3401,7 +3458,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
 
         public void WriteXml(XmlWriter writer)
         {
-            foreach(KeyValuePair<DS4Controls, X360Controls> pair in customMapButtons)
+            foreach (KeyValuePair<DS4Controls, X360Controls> pair in customMapButtons)
             {
                 writer.WriteStartElement(pair.Key.ToString());
                 if (shiftTriggers.TryGetValue(pair.Key, out int shiftTrigger) &&
@@ -3574,7 +3631,7 @@ namespace DS4WinWPF.DS4Control.DTOXml
                     {
                         DS4KeyType keyType = DS4KeyType.None;
                         string[] ds4KeyNames = Enum.GetNames(typeof(DS4KeyType));
-                        foreach(string keyName in ds4KeyNames)
+                        foreach (string keyName in ds4KeyNames)
                         {
                             if (item.InnerText.Contains(keyName) &&
                                 Enum.TryParse(keyName, out DS4KeyType tempKey))

@@ -56,6 +56,8 @@ namespace DS4Windows
         public const bool DEFAULT_MAXOUTPUT_FORCE = false;
         public const int DEFAULT_FUZZ = 0;
         public const DeadZoneType DEFAULT_DEADZONE_TYPE = DeadZoneType.Radial;
+        public const bool DEFAULT_DEADZONE_TYPE_RADIAL = false;
+        public const bool DEFAULT_DEADZONE_TYPE_AXIAL = false;
         public const double DEFAULT_VERTICAL_SCALE = 100.0;
         public const double DEFAULT_OUTER_BIND_DEAD = 75.0;
         public const bool DEFAULT_OUTER_BIND_INVERT = false;
@@ -86,6 +88,8 @@ namespace DS4Windows
         public int fuzz = DEFAULT_FUZZ;
         public double verticalScale = DEFAULT_VERTICAL_SCALE;
         public DeadZoneType deadzoneType = DEFAULT_DEADZONE_TYPE;
+        public bool deadZoneTypeRadial = DEFAULT_DEADZONE_TYPE_RADIAL;
+        public bool deadZoneTypeAxial = DEFAULT_DEADZONE_TYPE_AXIAL;
         public double outerBindDeadZone = DEFAULT_OUTER_BIND_DEAD;
         public bool outerBindInvert = DEFAULT_OUTER_BIND_INVERT;
         public AxisDeadZoneInfo xAxisDeadInfo = new AxisDeadZoneInfo();
@@ -102,6 +106,8 @@ namespace DS4Windows
             fuzz = DEFAULT_FUZZ;
             verticalScale = DEFAULT_VERTICAL_SCALE;
             deadzoneType = DEFAULT_DEADZONE_TYPE;
+            deadZoneTypeRadial = DEFAULT_DEADZONE_TYPE_RADIAL;
+            deadZoneTypeAxial = DEFAULT_DEADZONE_TYPE_AXIAL;
             outerBindDeadZone = DEFAULT_OUTER_BIND_DEAD;
             outerBindInvert = DEFAULT_OUTER_BIND_INVERT;
             xAxisDeadInfo.Reset();

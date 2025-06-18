@@ -1067,8 +1067,10 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 StickDeadZoneInfo.DeadZoneType current = Global.LSModInfo[device].deadzoneType;
                 if (temp == current) return;
                 Global.LSModInfo[device].deadzoneType = temp;
+                LSDeadTypeIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        public event EventHandler LSDeadTypeIndexChanged;
 
         public int RSDeadTypeIndex
         {
@@ -1101,8 +1103,66 @@ namespace DS4WinWPF.DS4Forms.ViewModels
                 StickDeadZoneInfo.DeadZoneType current = Global.RSModInfo[device].deadzoneType;
                 if (temp == current) return;
                 Global.RSModInfo[device].deadzoneType = temp;
+                RSDeadTypeIndexChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+        public event EventHandler RSDeadTypeIndexChanged;
+
+        public bool LSDeadZoneTypeRadial
+        {
+            get => Global.LSModInfo[device].deadZoneTypeRadial;
+            set
+            {
+                bool temp = Global.LSModInfo[device].deadZoneTypeRadial;
+                if (temp == value) return;
+
+                Global.LSModInfo[device].deadZoneTypeRadial = value;
+                LSDeadZoneTypeRadialChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LSDeadZoneTypeRadialChanged;
+
+        public bool LSDeadZoneTypeAxial
+        {
+            get => Global.LSModInfo[device].deadZoneTypeAxial;
+            set
+            {
+                bool temp = Global.LSModInfo[device].deadZoneTypeAxial;
+                if (temp == value) return;
+
+                Global.LSModInfo[device].deadZoneTypeAxial = value;
+                LSDeadZoneTypeAxialChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler LSDeadZoneTypeAxialChanged;
+
+        public bool RSDeadZoneTypeRadial
+        {
+            get => Global.RSModInfo[device].deadZoneTypeRadial;
+            set
+            {
+                bool temp = Global.RSModInfo[device].deadZoneTypeRadial;
+                if (temp == value) return;
+
+                Global.RSModInfo[device].deadZoneTypeRadial = value;
+                RSDeadZoneTypeRadialChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RSDeadZoneTypeRadialChanged;
+
+        public bool RSDeadZoneTypeAxial
+        {
+            get => Global.RSModInfo[device].deadZoneTypeAxial;
+            set
+            {
+                bool temp = Global.RSModInfo[device].deadZoneTypeAxial;
+                if (temp == value) return;
+
+                Global.RSModInfo[device].deadZoneTypeAxial = value;
+                RSDeadZoneTypeAxialChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler RSDeadZoneTypeAxialChanged;
 
         public double LSSens
         {
