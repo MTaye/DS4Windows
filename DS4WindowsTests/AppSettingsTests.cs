@@ -16,13 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.Configuration;
+using DS4Windows;
+using DS4WinWPF.DS4Control.DTOXml;
 using System;
+using System.Configuration;
+using System.Globalization;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using DS4Windows;
-using DS4WinWPF.DS4Control.DTOXml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DS4WindowsTests
@@ -130,7 +131,8 @@ namespace DS4WindowsTests
             dto.MapTo(tempStore);
 
             // Check settings
-            DateTime.TryParse(dto.LastCheckString, out DateTime tempLastChecked);
+            //DateTime.TryParse(dto.LastCheckString, out DateTime tempLastChecked);
+            DateTime.TryParseExact(dto.LastCheckString, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime tempLastChecked);
             Assert.AreEqual(tempLastChecked, tempStore.lastChecked);
         }
 

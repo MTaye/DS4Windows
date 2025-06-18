@@ -28,7 +28,7 @@ namespace DS4WindowsTests
     [TestClass]
     public class ProfileMigrationTests
     {
-        private const int EXPECTED_JAYS_MIGRATED_VERSION = 5;
+        private const int EXPECTED_JAYS_MIGRATED_VERSION = 6;
         private string ds4winJays2KingsOldProfile = string.Empty;
         private string ds4winJays2KingsExpectedMigratedProfile = string.Empty;
 
@@ -132,6 +132,10 @@ namespace DS4WindowsTests
   <RSMaxOutputForce>False</RSMaxOutputForce>
   <LSDeadZoneType>Radial</LSDeadZoneType>
   <RSDeadZoneType>Radial</RSDeadZoneType>
+  <LSDeadZoneTypeRadial>False</LSDeadZoneTypeRadial>
+  <LSDeadZoneTypeAxial>False</LSDeadZoneTypeAxial>
+  <RSDeadZoneTypeRadial>False</RSDeadZoneTypeRadial>
+  <RSDeadZoneTypeAxial>False</RSDeadZoneTypeAxial>
   <LSAxialDeadOptions>
     <DeadZoneX>0</DeadZoneX>
     <DeadZoneY>0</DeadZoneY>

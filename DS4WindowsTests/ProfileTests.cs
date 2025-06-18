@@ -85,6 +85,10 @@ namespace DS4WindowsTests
   <RSMaxOutputForce>False</RSMaxOutputForce>
   <LSDeadZoneType>Radial</LSDeadZoneType>
   <RSDeadZoneType>Radial</RSDeadZoneType>
+  <LSDeadZoneTypeRadial>False</LSDeadZoneTypeRadial>
+  <LSDeadZoneTypeAxial>False</LSDeadZoneTypeAxial>
+  <RSDeadZoneTypeRadial>False</RSDeadZoneTypeRadial>
+  <RSDeadZoneTypeAxial>False</RSDeadZoneTypeAxial>
   <LSAxialDeadOptions>
     <DeadZoneX>10</DeadZoneX>
     <DeadZoneY>10</DeadZoneY>
