@@ -1,8 +1,8 @@
 # DS4Windows
 
-This project is a fork of [Ryochan7's version](https://github.com/Ryochan7/DS4Windows) with an option to use both the Radial and Axial deadzone at the same time.
+This project is a fork of [Ryochan7's source](https://github.com/Ryochan7/DS4Windows) with an option to use both the Radial and Axial deadzone at the same time.
 
-The rest of the description is copy-paste from the source.
+The rest of the description is copy-paste from the source as well.
 
 ## License
 
