@@ -1,15 +1,8 @@
 # DS4Windows
 
-Like those other DS4 tools, but sexier.
+This project is a fork of [Ryochan7's version](https://github.com/Ryochan7/DS4Windows) with an option to use both the Radial and Axial deadzone at the same time.
 
-DS4Windows is an extract anywhere program that allows you to get the best
-DualShock 4 experience on your PC. By emulating an Xbox 360 controller, many
-more games are accessible. Other input controllers are also supported including the
-DualSense, Switch Pro, and JoyCon controllers (**first party hardware only**).
-
-This project is a fork of the work of Jays2Kings.
-
-![DS4Windows Preview](https://raw.githubusercontent.com/Ryochan7/DS4Windows/jay/ds4winwpf_screen_20200412.png)
+The rest of the description is copy-paste from the source.
 
 ## License
 
@@ -20,7 +13,7 @@ available in this source code from the COPYING file.
 
 ## Downloads
 
-- **[Main builds of DS4Windows](https://github.com/Ryochan7/DS4Windows/releases)**
+- **[Main builds of DS4Windows](https://github.com/MTaye/DS4Windows/releases)**
 
 ## Requirements
 
