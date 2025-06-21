@@ -13,7 +13,7 @@ available in this source code from the COPYING file.
 
 ## Downloads
 
-- **[Main builds of DS4Windows](https://github.com/MTaye/DS4Windows/releases)**
+- **[Main builds of this fork of DS4Windows](https://github.com/MTaye/DS4Windows/releases)**
 
 ## Requirements
 
